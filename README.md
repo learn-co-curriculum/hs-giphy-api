@@ -26,11 +26,11 @@ Followed by a
 
 `?`
 
-which indicates - Hey! Some custom parameters are coming up:
+which indicates - Hey! Some custom parameters are coming up. The first parameters are:
 
 `q=funny+cat`
 
-our query (q for query) for gifs tagged with `funny` and `cat`.
+Which is a query (q for query) for gifs tagged with `funny` and `cat`.
 
 Followed by a
 
@@ -45,6 +45,10 @@ This is an API key provided by Giphy. Every request you make must have this api 
 ```
 http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC
 ```
+
+Copy and paste the url into your browser to see the JSON response that Giphy is going to send back to you. If you see a bunch of indecipherable bunched up text, download this [JSON chrome extension](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en).
+
+
 
 
 
