@@ -11,22 +11,22 @@ Step right up and get your gifs [here](http://giphy.com/)! Giphy makes it super 
 ##Using the Giphy API
 There are several different JSON endpoints (essentially URLs) that can be used to access the Giphy API. You can find instructions for using all of the endpoints in [Giphy's API documentation](https://github.com/Giphy/GiphyAPI). We've provided a Ruby wrapper that will help you use the search, random and trending endpoints.
 
-You can use this wrapper by adding the `giph.rb` file to your project (in your models directory) and calling the methods (in your application controller) like this:
+You can use this wrapper by adding the `giph.rb` file to your project (in your models directory) and calling the Giph methods (in your application controller) like this:
 
 ```ruby
 giph = Giph.new
-@image_urls = giph.search(["funny","cat"]) #=>
+@image_urls = giph.search(["funny","cat"]) #=> ["http://media1.giphy.com/media/OJlZmXRwHXdKg/giphy.gif", "http://media1.giphy.com/media/DYeUCNxWsZ76o/giphy.gif", "http://media1.giphy.com/media/dFgEAn2QfHve8/giphy.gif" ... ]
 ```
 
 If you want to know more about how this Ruby wrapper was created keep reading.
 
-###Search
-Using the search endpoint is all about setting up a URL with the proper parameters. Here is an example of how we would construct an API call for gifs of funny cats:
+##How this Ruby wrapper was created
+Using the Giphy API search endpoint is all about setting up a URL with the proper parameters. Here is a sample API call to search for gifs of funny cats:
 ```
 http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC
 ```
 
-Let's break this down into parts. First you have the base URL for the search endpoint:
+Let's break this down into parts. First you have the base URL for the search endpoint (noticed `search` in the URL):
 
 ```
 http://api.giphy.com/v1/gifs/search
@@ -59,7 +59,7 @@ http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC
 
 Copy and paste the url into your browser to see the JSON response that Giphy is going to send back to you. If you see a bunch of indecipherable bunched up text, download this [JSON chrome extension](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) to save your eyes.
 
-This thing probably looks intimidating, but it's essentially a nested hash. Let's call this hash object `response`. If we want to pull the `data` array of this hash that would be
+This thing probably looks intimidating, but it's essentially a nested hash. Let's call this hash object `response`. If we want to pull the `data` array out of this hash that would be
 
 `response["data"]`
 
@@ -69,7 +69,7 @@ Drill down deeper to the first item in that array:
 
 And if we wanted to pull the url for that first image in the array:
 
-`response["data"][0]["url"]` #=> "http://giphy.com/gifs/funny-cat-FiGiRei2ICzzG"
+`response["data"][0]["images"]["original"]["url"]` #=> "http://media0.giphy.com/media/FiGiRei2ICzzG/giphy.gif"
 
 
 
