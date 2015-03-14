@@ -8,7 +8,7 @@ type: Intro, Documentation
 ##Giphy
 Step right up and get your gifs [here](http://giphy.com/)! Giphy makes it super easy to pull animated gifs into your project.
 
-##Using the Giphy API
+##Using the Giphy API (via a Ruby wrapper)
 There are several different JSON endpoints (essentially URLs) that can be used to access the Giphy API. You can find instructions for using all of the endpoints in [Giphy's API documentation](https://github.com/Giphy/GiphyAPI). We've provided a Ruby wrapper that will help you use the search, random and trending endpoints.
 
 You can use this wrapper by adding the `giph.rb` file to your project (in your models directory) and calling the Giph methods (in your application controller) like this:
