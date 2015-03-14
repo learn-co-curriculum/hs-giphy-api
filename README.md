@@ -18,6 +18,8 @@ giph = Giph.new
 @image_urls = giph.search(["funny","cat"]) #=> ["http://media1.giphy.com/media/OJlZmXRwHXdKg/giphy.gif", "http://media1.giphy.com/media/DYeUCNxWsZ76o/giphy.gif", "http://media1.giphy.com/media/dFgEAn2QfHve8/giphy.gif" ... ]
 ```
 
+Calling `giph.search(["funny","cat"])` will return an array of image urls for up to 25 gifs of funny cats.
+
 If you want to know more about how this Ruby wrapper was created keep reading.
 
 ##How this Ruby wrapper was created
