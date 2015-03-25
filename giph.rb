@@ -1,8 +1,7 @@
+require 'httparty'
 require 'json'
-require 'net/http'
 
 class Giph
-
   #this method returns an array of image urls
   def search(keywords)
     #creates a string of keywords connected by +
@@ -20,6 +19,13 @@ class Giph
     response["data"]["image_url"]
   end
 
+  #the Giphy translate endpoint uses Giphy's "special sauce" to find one gif that best matches the word or phrase that the user is searching for
+  #this method returns one image url
+  def translate(string)
+    response = get_api_response("http://api.giphy.com/v1/gifs/translate?s=#{string}&rating=pg&api_key=dc6zaTOxFJmzC")
+    response["data"]["images"]["original"]["url"]
+  end
+
   #this method returns an array image urls
   def trending
     response = get_api_response("http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC")
@@ -29,7 +35,7 @@ class Giph
 
   #this method makes an HTTP call to the Giphy API and parses the JSON response to return a Ruby hash
   def get_api_response(endpoint)
-    uri = URI(endpoint)
+    uri = URI.parse(URI.encode(endpoint))
     api_response = Net::HTTP.get(uri)
     JSON.parse(api_response)
   end
