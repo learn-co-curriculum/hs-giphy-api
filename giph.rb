@@ -1,11 +1,11 @@
-require 'httparty'
 require 'json'
+require 'net/http'
 
 class Giph
   #this method returns an array of image urls
   def search(keywords)
-    #creates a string of keywords connected by +
-    query = keywords.inject("") { |string, keyword| string + "+#{keyword}" }
+    #if there are multiple keywords this creates a string of keywords connected by +
+    query = keywords.split(/,| /).inject("") { |string, keyword| string + "+#{keyword}" }
     #applies that query string in an api call to the search endpoint
     response = get_api_response("http://api.giphy.com/v1/gifs/search?q=#{query}&rating=pg&api_key=dc6zaTOxFJmzC")
     #iterates through the response hash and collects the image url for each gif (25 gifs are returned by default)
@@ -14,8 +14,11 @@ class Giph
 
   #this method returns one image url for a random gif
   def random(tags)
-    tags = tags.inject("") { |string, tag| string + "+#{tag}" }
+    #create tag query string
+    tags = tags.split(/,| /).inject("") { |string, tag| string + "+#{tag}" }
+    #get api response
     response = get_api_response("http://api.giphy.com/v1/gifs/random?tag=#{tags}&rating=pg&api_key=dc6zaTOxFJmzC")
+    #return image url
     response["data"]["image_url"]
   end
 
@@ -26,10 +29,9 @@ class Giph
     response["data"]["images"]["original"]["url"]
   end
 
-  #this method returns an array image urls
+  #this method returns an array of image urls for the top 25 trending gifs on Giphy
   def trending
     response = get_api_response("http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC")
-    #the trending endpoint returns the top 25 trending gifs on Giphy
     response["data"].collect { |gif| gif["images"]["original"]["url"] }
   end
 
