@@ -1,9 +1,4 @@
----
-tags: kids, ruby, giphy, apis
-languages: ruby
-level: 1
-type: Intro, Documentation
----
+
 
 ##Giphy
 Step right up and get your gifs [here](http://giphy.com/)! Giphy makes it super easy to pull animated gifs into your project.
