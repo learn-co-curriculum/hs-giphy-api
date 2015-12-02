@@ -73,3 +73,5 @@ And if we wanted to pull the url for that first image in the array:
 
 
 
+
+<a href='https://learn.co/lessons/hs-giphy-api' data-visibility='hidden'>View this lesson on Learn.co</a>
